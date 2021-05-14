@@ -2,7 +2,7 @@
 
 [How to create a Professional README](./readme-guide.md)
 
-Title: Read.Me-generator</br>
+Title: ReadMe Rainbows</br>
 Student: Justin Villena</br>
 Description: A Node JS powered ReadMe generator.</br>
 Full Repository: https://github.com/Jrvillena/readme-generator</br>
@@ -85,4 +85,3 @@ Repository follows best practices for class/id naming conventions, indentation, 
 Repository contains multiple descriptive commit messages.
 
 Repository contains a high-quality README with description and a link to walkthrough video.
-
