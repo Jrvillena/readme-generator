@@ -1,6 +1,6 @@
 // imports
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown")
+const generateMarkdown = require("./utils/generateMarkdown.js")
 const fs = require("fs"); 
 
 // Questions asked to the user
@@ -37,10 +37,22 @@ const questions = [
     name: "Usage",
   },
   {
-    type: "input",
-    message: "What license was used for this README?",
+    type: "checkbox",
     name: "License",
-  },
+    message: "What license was used for this README?",
+    choices: [{
+        name: "GNU",
+        },
+        {
+        name: "MIT"
+        },
+        {
+        name: "Unlicense"
+        },
+        {
+        name: "Apache_2.0"
+        }]
+},
 
   {
     type: "input",
