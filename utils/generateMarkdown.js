@@ -40,4 +40,4 @@ If you have any questions about the repo, open an issue or contact ${data.UserNa
 `
 }
 
-module.exports = generateMarkdown;   s
+module.exports = generateMarkdown; 
