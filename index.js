@@ -1,92 +1,90 @@
-// imports
-const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown.js")
-const fs = require("fs"); 
+// Packages needed for this application
+const fs = require("fs");
+const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
-// Questions asked to the user
+// List of questions for user input
 const questions = [
-  {
-    type: "input",
-    message: "What is your GitHub username?",
-    name: "UserName",
-  },
-  {
-    type: "input",
-    message: "What is your email address?",
-    name: "Email",
-  },
-
-  {
-    type: "input",
-    message: "What is the title for your project?",
-    name: "Title",
-  },
-  {
-    type: "input",
-    message: "Please give description of your project.",
-    name: "Description",
-  },
-  {
-    type: "input",
-    message: "What necessary dependencies must be installed to run this app?",
-    name: "Installation",
-  },
-  {
-    type: "input",
-    message: "What is this app used for?",
-    name: "Usage",
-  },
-  {
-    type: "checkbox",
-    name: "License",
-    message: "What license was used for this README?",
-    choices: [{
-        name: "GNU",
-        },
-        {
-        name: "MIT"
-        },
-        {
-        name: "Unlicense"
-        },
-        {
-        name: "Apache_2.0"
-        }]
-},
-
-  {
-    type: "input",
-    message: "Please add contributors",
-    name: "Contributor",
-  },
-  {
-    type: "input",
-    message: "What command do you use to test this App?",
-    name: "Test",
-  }
+    {
+        type: 'input',
+        name: 'title',
+        message: "What is the name of the project?",
+        validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Please enter the projects name!');
+              return false;
+            }
+        }
+    },
+    {
+        type:'input',
+        name: 'userName',
+        message: 'What is your GitHub user name.'
+    },
+    {
+        type: 'input',
+        name: 'description',
+        message: 'Enter a brief descritption of the project.'
+    },
+    {
+        type: 'input',
+        name: 'install',
+        message: 'What needs to be installed or source-linked in order for this app to work?'
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'What is this app used for?'
+    },
+    {
+        type: 'input',
+        name: 'contributors',
+        message: 'Who contributed to this project.'
+    },
+    {
+        type: 'input',
+        name :'steps',
+        message: 'What Steps were taken to code this app?'
+    }, 
+    {
+        type: 'checkbox',
+        name: 'license',
+        message: 'Which license(s) did you use.',
+        choices: [
+            'GNU General Public', 
+            'MIT',
+            'Unlicense',
+            'Apache'
+        ]
+    }, 
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address.'
+    }
 ];
 
-// Writing to a file 
+// Writes README file
 function writeToFile(fileName, data) {
 
-fs.writeFile("./utils/"+fileName, data, function(err) {
-  if (err) {
-    return console.log(err);
-  }
-  console.log ("Successfully wrote: " + fileName);
-})
+    fs.writeFile("./dist/"+fileName, data, function(err) {
+      if (err) {
+        return console.log(err);
+      }
+      console.log ("Successfully wrote: " + fileName);
+    })
+    
+    }
 
-}
-
-
-// initialization function
+// Initializes app
 function init() {
-  inquirer.prompt(questions)
-  .then(function(data) {
-    writeToFile("DemoREADME.md", generateMarkdown(data));
-  })
-}
+    inquirer.prompt(questions)
+    .then(function(data) {
+      writeToFile("demoREADME.md", generateMarkdown(data));
+    })
+  }
 
 
-// run the app
 init();
